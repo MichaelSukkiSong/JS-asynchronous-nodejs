@@ -2,6 +2,7 @@ const fs = require('fs');
 // to do a http request using a npm package called superagent.
 const superagent = require('superagent');
 
+// Building promises
 const readFilePro = file => {
   return new Promise((resolve, reject) => {
     fs.readFile(file, (err, data) => {
@@ -20,6 +21,7 @@ const writeFilePro = (file, data) => {
   });
 };
 
+// Building an async/await function
 const getDogPic = async () => {
   try {
     const data = await readFilePro(`${__dirname}/dog.txt`);
@@ -41,6 +43,8 @@ const getDogPic = async () => {
   return '2: READY XD';
 };
 
+// Building a async/await function to match the async/await function(not using .then / .catch)
+/*
 (async () => {
   try {
     console.log('1: Will get dog pics!');
@@ -51,7 +55,9 @@ const getDogPic = async () => {
     console.log('ERROR !!!');
   }
 })();
+*/
 
+// Consuming promises with the Returning values from async functions
 /*
 console.log('1: Will get dog pics!');
 getDogPic()
@@ -63,6 +69,8 @@ getDogPic()
     console.log('ERROR !!!');
   });
 */
+
+// Consuming promises
 /*
 readFilePro(`${__dirname}/dog.txt`)
   .then(data => {
