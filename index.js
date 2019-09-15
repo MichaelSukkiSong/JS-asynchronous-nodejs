@@ -34,10 +34,35 @@ const getDogPic = async () => {
     console.log('Random dog image saved to file!');
   } catch (err) {
     console.log(err);
-  }
-};
-getDogPic();
 
+    // if throw is used, it will mark the entire promise(the async function returns) as rejected.
+    throw err;
+  }
+  return '2: READY XD';
+};
+
+(async () => {
+  try {
+    console.log('1: Will get dog pics!');
+    const x = await getDogPic();
+    console.log(x);
+    console.log('3: Done getting dog pics!');
+  } catch (err) {
+    console.log('ERROR !!!');
+  }
+})();
+
+/*
+console.log('1: Will get dog pics!');
+getDogPic()
+  .then(x => {
+    console.log(x);
+    console.log('3: Done getting dog pics!');
+  })
+  .catch(err => {
+    console.log('ERROR !!!');
+  });
+*/
 /*
 readFilePro(`${__dirname}/dog.txt`)
   .then(data => {
