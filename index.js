@@ -30,9 +30,30 @@ const getDogPic = async () => {
     const res = await superagent.get(
       `https://dog.ceo/api/breed/${data}/images/random`
     );
-    console.log(res.body.message);
 
+    console.log(res.body.message);
     await writeFilePro('dog-img.txt', res.body.message);
+
+    /*
+    // if we want to have 3 images simultaneously
+    // we first save the promises in 3 different variables
+    const res1Pro = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    const res2Pro = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    const res3Pro = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    // put them in an array and await all of them and save in an array
+    const all = await Promise.all([res1Pro, res2Pro, res3Pro]);
+    const imgs = all.map(el => el.body.message);
+    console.log(imgs);
+
+    await writeFilePro('dog-img.txt', imgs.join('\n'));
+    */
+
     console.log('Random dog image saved to file!');
   } catch (err) {
     console.log(err);
@@ -44,7 +65,7 @@ const getDogPic = async () => {
 };
 
 // Building a async/await function to match the async/await function(not using .then / .catch)
-/*
+
 (async () => {
   try {
     console.log('1: Will get dog pics!');
@@ -55,7 +76,6 @@ const getDogPic = async () => {
     console.log('ERROR !!!');
   }
 })();
-*/
 
 // Consuming promises with the Returning values from async functions
 /*
